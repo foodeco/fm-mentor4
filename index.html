@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <title>Frontend Mentor | FAQ Accordion Card</title>
+
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      /* text */
+      --Very-dark-desaturated-blue: hsl(238, 29%, 16%);
+      --Soft-red: hsl(14, 88%, 65%);
+      --Very-dark-grayish-blue: hsl(237, 12%, 33%);
+      --Dark-grayish-blue: hsl(240, 6%, 50%);
+      /* gradient */
+      --Soft-violet: hsl(273, 75%, 66%);
+      --Soft-blue: hsl(240, 73%, 65%);
+      /* divider */
+      --Light-grayish-blue: hsl(240, 5%, 91%);
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(var(--Soft-violet), var(--Soft-blue));
+      font-family: 'Kumbh Sans', sans-serif;
+      overflow: hidden;
+    }
+    .container {
+      position: relative;
+      width: 65vw;
+      height: 70vh;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0px 11px 20px 0px rgba(0,0,0,0.5);
+      /* overflow: hidden; */
+    }
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      /* overflow: hidden; */
+      height: 100%;
+    }
+
+    /* images */
+    .img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .background {
+      position: absolute;
+      /* top: -50%;
+      left: -120%; */
+      left: -120%;
+      top: -50%;
+      width: 220%;
+      height: 150%;
+      background: url('images/bg-pattern-desktop.svg');
+      background-repeat: no-repeat;
+    }
+    .woman {
+      position: absolute;
+      top: 15%;
+      left: -15%;
+      width: 115%;
+      height: 85%;
+      background: url('images/illustration-woman-online-desktop.svg');
+      background-repeat: no-repeat;
+    }
+    .box {
+      position: absolute;
+      left: -12%;
+      top: 40%;
+      width: 100%;
+      height: 100%;
+      background: url('images/illustration-box-desktop.svg');
+      background-repeat: no-repeat;
+      z-index: 1;
+    }
+
+    /* contents */
+    .contents {
+      display: grid;
+      margin-left: 20px;
+      height: 95%;
+      width: 75%;
+      grid-template-rows: 0.2fr 0.8fr;
+      align-self: center;
+      overflow-y: auto;
+      
+    }
+    h1 {
+      align-self: center;
+    }
+    section {
+      display: grid;
+      grid-template-rows: auto;  
+      height: 90%;
+    }
+    .questions {
+      /* border-top: 1px solid black; */
+      border-bottom: 1px solid var(--Light-grayish-blue);
+      height: max-content;
+      padding-bottom: 5px;
+      /* margin-bottom: 10px; */
+      overflow: hidden;
+      position: relative;
+    }
+    .disabled {
+      margin: 10px 0;
+    }
+    .disabled {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .disabled p {
+      color: var(--Very-dark-grayish-blue);
+    }
+    .detail {
+      padding: 5px 0;
+    }
+    .detail p {
+      color: var(--Dark-grayish-blue);
+      font-size: 15px;
+      width: 90%;
+      padding-bottom: 10px;
+    }
+    details summary {
+      cursor: pointer;
+    }
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] summary svg {
+      transform: rotate(0.5turn);
+      transition: 0.5s;
+    }
+    details:not([open]) summary p:hover {
+      color: var(--Soft-red);
+    }
+    details[open] summary p {
+      font-weight: 700;
+    }
+
+    @media screen and (max-width:560px) {
+      body {
+        font-size: 14px;
+      }
+      .container {
+        margin-top: 15%;
+        width: 90vw;
+      }
+      main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 3fr;
+      }
+      .contents {
+        width: 90%;
+      }
+      h1 {
+        justify-self: center;
+      }
+      .img {
+        overflow: visible;
+      }
+      .background {
+        background: url('images/bg-pattern-mobile.svg');
+        background-size: 85%;
+        background-repeat: no-repeat;
+        width: 85%;
+        height: 100%;
+        top: 0;
+        left: 15%;
+      }
+      .woman {
+        background: url('images/illustration-woman-online-mobile.svg');
+        background-size: 85%;
+        background-repeat: no-repeat;
+        top: -85%;
+        left: 15%;
+        width: 85%;
+        height: 185%;
+      }
+      .box {
+        display: none;
+      }
+      .detail p {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <main>
+      <!-- images -->
+      <div class="box"></div>
+      <div class="img">
+        <div class="background">
+          <!-- <img src="images/bg-pattern-desktop.svg" alt="bg-shadow"> -->
+        </div>
+        <div class="woman">
+          <!-- <img src="images/illustration-woman-online-desktop.svg" alt="woman"> -->
+        </div>
+      </div>
+      <!-- FAQ -->
+      <div class="contents">
+        <h1>FAQ</h1>
+        <section>
+          <div class="questions">
+            <details>
+              <summary class="disabled">
+                <p>How many team members can I invite?</p>
+                <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path d="M1 .799l4 4 4-4" stroke="#F47B56" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+              </summary>
+              <div class="detail"><p>You can invite up to 2 additional users on the Free plan. There is no limit on team members for the Premium plan.</p></div>
+            </details>
+          </div>
+          <div class="questions">
+            <details>
+              <summary class="disabled">
+                <p>What is the maximum file upload size?</p>
+                <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path d="M1 .799l4 4 4-4" stroke="#F47B56" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+              </summary>
+              <div class="detail"><p>No more than 2GB. All files in your account must fit your allotted storage space.</p></div>
+            </details>
+          </div>
+          <div class="questions">
+            <details>
+              <summary class="disabled">
+                <p>How do I reset my password?</p>
+                <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path d="M1 .799l4 4 4-4" stroke="#F47B56" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+              </summary>
+              <div class="detail"><p>Click “Forgot password” from the login page or “Change password” from your profile page.
+                A reset link will be emailed to you.</p></div>
+            </details>
+          </div>
+          <div class="questions">
+            <details>
+              <summary class="disabled">
+                <p>Can I cancel my subscription?</p>
+                <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path d="M1 .799l4 4 4-4" stroke="#F47B56" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+              </summary>
+              <div class="detail"><p>Yes! Send us a message and we’ll process your request no questions asked.</p></div>
+            </details>
+          </div>
+          <div class="questions">
+            <details>
+              <summary class="disabled">
+                <p>Do you provide additional support?</p>
+                <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path d="M1 .799l4 4 4-4" stroke="#F47B56" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+              </summary>
+              <div class="detail"><p>Chat and email support is available 24/7. Phone lines are open during normal business hours.</p></div>
+            </details>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- <script>
+    let details = document.querySelectorAll('details');
+    function check() {
+      if (this.hasAttribute('open')) {
+        // details.forEach((item) => {
+        //   item.removeAttribute('open');
+        // });
+        this.removeAttribute('open')
+      }
+    };
+
+    details.forEach((item)=> {
+      item.addEventListener('click', check);
+    })
+  </script> -->
+</body>
+</html>
